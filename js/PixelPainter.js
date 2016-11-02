@@ -64,6 +64,24 @@ function randomColorPalette(colors){
   return color;
 }
 
+pixelPainter(10, 10);
+
+// Event listener to get pixel color from color grid
+var chosenColor = document.getElementsByClassName("colors");
+var color = '';
+
+function getColor(){
+  for (var i = 0; i < chosenColor.length; i++){
+    chosenColor[i].addEventListener('click', getStyle);
+  }
+}
+
+function getStyle(){
+  console.log(this.style.backgroundColor);
+}
+
+getColor();
+
 
 
 
