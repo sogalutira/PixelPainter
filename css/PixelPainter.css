@@ -14,8 +14,10 @@ div.rows {
 
 }
 
-#pp-colors {
+#pp-colors .rows {
   display: inline-block;
+  height: 10px;
+  width: 10px;
 }
 
 #pp-canvas{
