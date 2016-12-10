@@ -41,12 +41,10 @@ function setAttr(element, attrObj){
 }
 // creating a pixel painter with color palette and grid using createGrid function
 var paintContainer = document.getElementById('pixelPainter');
-// function pixelPainter(width, height, attributes){
-  var canvasGrid = createGrid(10, 10);
-  canvasGrid.id = "pp-canvas";
-  paintContainer.appendChild(canvasGrid);
-// }
+var canvasContainer = document.createElement('div');
+canvasContainer.id = 'canvases';
 
+// function pixelPainter(width, height, attributes){
   var colorsGrid = createGrid(6, 11, {class: 'colors'});
   colorsGrid.id = "pp-colors";
   var indivColor = colorsGrid.querySelectorAll('.colors');
@@ -55,9 +53,15 @@ var paintContainer = document.getElementById('pixelPainter');
     indivColor[i].style.backgroundColor = randomColorPalette();
   }
 
-  paintContainer.appendChild(colorsGrid);
+  canvasContainer.appendChild(colorsGrid);
 
-function randomColorPalette(colors){
+  var canvasGrid = createGrid(10, 10);
+  canvasGrid.id = "pp-canvas";
+  canvasContainer.appendChild(canvasGrid);
+  paintContainer.appendChild(canvasContainer);
+// }
+
+function randomColorPalette(){
   var rgbValues = '0123456789ABCDEF'.split('');
   var color = '#';
   for (var i = 0; i < 6; i++){
@@ -79,13 +83,26 @@ function getColor(){
 }
 
 function getStyle(){
-  console.log('bg color', this.style.backgroundColor);
+  console.log(this.style.backgroundColor);
+  color = this.style.backgroundColor;
+  return color;
 }
 
 getColor();
 
+// Event listener to fill the canvas pixel with the selected color
 
+function fillColor(pixel){
+  this.style.backgroundColor = color;
+  return this.style.backgroundColor;
+}
 
+function drag(){
+  var cells = document.querySelectorAll('.columns');
+    console.log('yo');
+  for (var i = 0; i < cells.length; i++){
+    cells[i].addEventListener('mousedown', fillColor);
+  }
+}
 
-
-
+drag();
