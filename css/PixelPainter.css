@@ -1,3 +1,7 @@
+#pixelPainter{
+  width: 100%;
+  height: 100%;
+}
 div.columns {
   border-style: outset;
   border-width: 1px;
@@ -9,7 +13,7 @@ div.columns {
 
 div.rows {
   height: 20px;
-  width: 55%;
+  width: 100%;
   display: inline-block;
 
 }
@@ -24,10 +28,10 @@ div.rows {
   width: 10px;
 }
 
-#pp-canvas{
+#pp-canvas.grid{
   display: inline-block;
-  width: 75%;
-  margin-left: 20px;
+  width: 100%;
+  margin-left: 15%;
 }
 
 div.colors {
@@ -43,8 +47,34 @@ div.colors {
   border-style: solid;
   border-width: thin;
   border-color: lightgray;
-  height: 10px;
-  width: 10px;
+  height: 15px;
+  width: 15px;
   display: inline-block;
-  margin-top: 10px;
+}
+
+.selected-container{
+  display: block;
+  width: 61.6px;
+  text-align: center;
+  margin-top: 210%;
+}
+
+div.selected-description{
+  display: block;
+  font-size: 8px;
+  margin-bottom: 15px;
+}
+
+div.left-bar{
+  position: absolute;
+  display: inline-block;
+}
+
+div.eraser{
+  border-style: solid;
+  border-width: thin;
+  border-color: lightgray;
+  height: 15px;
+  width: 15px;
+  display: inline-block;
 }
