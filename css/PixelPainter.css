@@ -39,7 +39,7 @@ div.colors {
   display: inline-block;
 }
 
-.selected{
+#selected{
   border-style: solid;
   border-width: thin;
   border-color: lightgray;
