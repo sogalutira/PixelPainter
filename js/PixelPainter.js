@@ -48,25 +48,24 @@ var paintContainer = document.getElementById('pixelPainter');
 var canvasContainer = document.createElement('div');
 canvasContainer.id = 'canvases';
 
-// function pixelPainter(width, height, attributes){
-  var colorsGrid = createGrid(6, 11, {class: 'colors'});
-  colorsGrid.id = "pp-colors";
-  var indivColor = colorsGrid.querySelectorAll('.colors');
-  // console.log(indivColor[1]);
-  for (var i = 0; i < indivColor.length; i++){
-    indivColor[i].style.backgroundColor = randomColorPalette();
-  }
+var colorsGrid = createGrid(6, 11, {class: 'colors'});
+colorsGrid.id = "pp-colors";
+canvasContainer.appendChild(colorsGrid);
+var canvasGrid = createGrid(10, 10);
+canvasGrid.id = "pp-canvas";
+canvasContainer.appendChild(canvasGrid);
+paintContainer.appendChild(canvasContainer);
 
-  canvasContainer.appendChild(colorsGrid);
+// Colors for palette
+var hexColors = [/* red */'#B20000', '#CC0000', '#E50000', '#FF0000', '#FF1919', '#FF3333', '#FF4C4C', '#FF6666', '#FF7F7F', '#FF9999', '#FFB2B2', /* orange */'#662C00', '#7F3700', '#994200', '#B24D00', '#CC5800', '#E56300', '#FF6F00', '#FF6F00', '#FF7D19', '#FF8B33', '#FF9A4C', /* yellow */'#CCC100', '#E5D900', '#FFF200', '#FFF999', /* green */ '#D2FF7F', '#DBFF99', '#E4FFB2', '#A6FF00', '#95E500', '#84CC00', '#00991E', '#00B223', '#00CC28', '#00E52D', '#00FF33', '#00FF33', '#66FF84', '#B2FFC1', /* blue */'#B2F6FF', '#99F3FF', '#7FF0FF', '#66EDFF', '#008799','#009DB2', '#00B4CC', '#00CAE5', '#00E1FF', '#4CEAFF', /* violet */'#5800CC', '#8B33FF', '#A866FF', '#C599FF', '#D3B2FF', /* grayscale */ '#000000', '#191919', '#333333', '#4C4C4C', '#666666', '#7F7F7F', '#999999', '#B2B2B2', '#CCCCCC', '#E5E5E5', '#FFFFFF'];
 
-  var canvasGrid = createGrid(10, 10);
-  canvasGrid.id = "pp-canvas";
-  canvasContainer.appendChild(canvasGrid);
-  paintContainer.appendChild(canvasContainer);
-// }
+// Fill color palette
+var indivColor = colorsGrid.querySelectorAll('.colors');
+indivColor.forEach(function(cell, index){
+  cell.style.backgroundColor = hexColors[index];
+});
 
-
-// Colors for pallete
+// Functions for random colors
 function randomColorPalette(){
   var rgbValues = '0123456789ABCDEF'.split('');
   var color = '#';
@@ -76,9 +75,13 @@ function randomColorPalette(){
   return color;
 }
 
-var hexColors =["#3B208B", "#624DA2", "#8979B9", "#B1A6D1", "#D8D2E8", "#92278F", "#A852A5", "#BE7DBC", "#D3A9D2", "#E9D4E9", "#EB208C", "#EF4DA3", "#F379BA", "#F7A6D1", "#FBD2E8", "#ED1F24", "#FF3333", "#FF6666", "#FF9999", "#FFCCCC", "#FA7513", "#FB9142", "#FCAC71", "#FDC8A1", "#FEE3D0", "#FFBF00", "#FFCC33", "#FFD966", "#FFE599", "#FFF2CC", "#FFE900", "#FFED33", "#FFF266", "#FFF699", "#FFFBCC", "#AFD136", "#BFDA5E", "#CFE386", "#DFEDAF", "#EFF6D7", "#3EB549", "#65C46D", "#8BD392", "#B2E1B6", "#D8F0DB", "#00B4C4", "#33C3D0", "#66D2DC", "#99E1E7", "#CCF0F3", "#0049DF", "#336DE5", "#6692EC", "#99B6F2", "#CCDBF9", "#000000", "#333333", "#666666", "#999999", "#FFFFFF"];
+function setRandomPalette(){
+  for (var j = 0; j < indivColor.length; j++){
+    indivColor[j].style.backgroundColor = randomColorPalette();
+  }
+}
 
-// Event listener to get pixel color from color grid
+// Event listener to get pixel color from color palette grid
 var chosenColor = document.querySelectorAll('.colors');
 var color = '';
 
@@ -103,13 +106,11 @@ function getStyle(){
   return color;
 }
 
-
-// Event listener to select color and fill the canvas pixel with the selected color
+// Event listener to fill the canvas pixel with the selected color
 function fillColor(pixel){
   this.style.backgroundColor = color;
   return this.style.backgroundColor;
 }
-var cellsArr = [];
 var cells = document.querySelectorAll('.columns');
 cells.forEach(function(cell){
   cell.addEventListener('click', fillColor);
@@ -125,14 +126,12 @@ cells.forEach(function(cell){
 });
 
 function startFill(){
-  console.log('mouse down');
   cells.forEach(function (cell){
     cell.addEventListener('mousemove', fillColor);
   });
 }
 
 function stopFill(){
-  console.log('mouse up');
   cells.forEach(function(cell){
     cell.removeEventListener('mousemove', fillColor);
   });
