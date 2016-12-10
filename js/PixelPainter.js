@@ -104,22 +104,6 @@ function setRandomPalette(){
 var chosenColor = document.querySelectorAll('.colors');
 var cells = document.querySelectorAll('.columns');
 var color = '';
-var width = 0;
-
-// Eraser to delete color
-var eraser = document.createElement('button');
-eraser.className = 'eraser';
-eraser.innerHTML = 'Erase';
-leftBar.appendChild(eraser);
-eraser.addEventListener('click', eraseColor);
-
-function eraseColor(){
-  cells.forEach(function(cell){
-    cell.addEventListener('click', function(){
-      this.style.backgroundColor = 'transparent';
-    });
-  });
-}
 
 // Event listener to get pixel color from color palette grid
 function getColor(){
@@ -132,9 +116,8 @@ getColor();
 function getStyle(){
   var selectedPixelColor = document.getElementById('selected');
   color = this.style.backgroundColor;
-  if (color !== undefined){
-    selectedPixelColor.style.backgroundColor = color;
-  }
+  //show user selected color
+  selectedPixelColor.style.backgroundColor = color;
   console.log('selected', selectedPixelColor.style.backgroundColor);
   return color;
 }
@@ -170,5 +153,30 @@ function stopFill(){
   });
 }
 
+// Eraser to delete color
+var eraser = document.createElement('button');
+eraser.className = 'eraser';
+eraser.innerHTML = 'Erase';
+leftBar.appendChild(eraser);
+eraser.addEventListener('click', eraseColor);
+
+function eraseColor(){
+  cells.forEach(function(cell){
+    cell.addEventListener('click', function(){
+      this.style.backgroundColor = 'transparent';
+    });
+  });
+}
+
+// Clear canvas
+var clearAll = document.createElement('button');
+clearAll.className = 'clear-all';
+clearAll.innerHTML = 'Clear';
+leftBar.appendChild(clearAll);
+clearAll.addEventListener('click', function(){
+  cells.forEach(function(cell){
+    cell.style.backgroundColor = 'transparent';
+  });
+});
 
 
