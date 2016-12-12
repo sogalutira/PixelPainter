@@ -20,12 +20,14 @@ div.rows {
 
 #pp-colors{
   display: inline-block;
+  width: 100%;
 }
 
 #pp-colors .rows {
   display: inline-block;
   height: 10px;
   width: 10px;
+  margin: 1px;
 }
 
 #pp-canvas.grid{
@@ -37,7 +39,7 @@ div.rows {
 div.colors {
   border-style: solid;
   border-width: thin;
-  border-color: lightgray;
+  border-color: rgba(140, 139, 139, 0.06);
   height: 10px;
   width: 10px;
   display: inline-block;
@@ -78,4 +80,9 @@ div.eraser{
   height: 15px;
   width: 15px;
   display: inline-block;
+}
+
+#highlight{
+  border-color: fuchsia;
+  border-width: 1px;
 }

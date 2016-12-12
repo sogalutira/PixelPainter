@@ -70,7 +70,7 @@ selectedContainer.appendChild(gridDescrDiv);
 leftBar.appendChild(selectedContainer);
 
 //Create grid for canvas
-var canvasGrid = createGrid(10, 10);
+var canvasGrid = createGrid(15, 15);
 canvasGrid.id = "pp-canvas";
 canvasContainer.appendChild(canvasGrid);
 paintContainer.appendChild(canvasContainer);
@@ -130,6 +130,7 @@ selectedPixelColor.style.backgroundColor = 'black';
 var color = 'black';
 var eraserOn = false;
 var colorFill = false;
+chosenColor.id = '';
 
 // Event listener to get pixel color from color palette grid
 function getColor(){
@@ -145,10 +146,15 @@ function getStyle(){
   eraserOn = false;
   colorFill = true;
   color = this.style.backgroundColor;
+  for (var i = 0; i < chosenColor.length; i++){
+    chosenColor[i].id = '';
+  }
+  this.id = 'highlight';
   //show user selected color
   selectedPixelColor.style.backgroundColor = color;
   return color;
 }
+
 
 // Event listener to fill the canvas pixel with the selected color
 function fillColor(pixel){
