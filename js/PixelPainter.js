@@ -122,12 +122,14 @@ var chosenColor = document.querySelectorAll('.colors');
 var cells = document.querySelectorAll('.columns');
 var color = '';
 var eraserOn = false;
+var colorFill = false;
 
 // Event listener to get pixel color from color palette grid
 function getColor(){
+  eraserOn = false;
+  colorFill = true;
   for (var i = 0; i < chosenColor.length; i++){
     chosenColor[i].addEventListener('click', getStyle);
-    eraserOn = false;
   }
 }
 getColor();
@@ -135,6 +137,7 @@ getColor();
 function getStyle(){
   var selectedPixelColor = document.getElementById('selected');
   eraserOn = false;
+  colorFill = true;
   color = this.style.backgroundColor;
   //show user selected color
   selectedPixelColor.style.backgroundColor = color;
@@ -144,16 +147,16 @@ function getStyle(){
 
 // Event listener to fill the canvas pixel with the selected color
 function fillColor(pixel){
-  if (eraserOn === true){
+  if (eraserOn === true && colorFill === false){
     this.style.backgroundColor = 'transparent';
   }else{
-    if (eraserOn === false){
+    if (eraserOn === false && colorFill === true){
       this.style.backgroundColor = color;
     }
   }
-  return this.style.backgroundColor;
 }
 
+// Click to fill individual pixels
 cells.forEach(function(cell){
   cell.addEventListener('click', fillColor);
 });
@@ -188,9 +191,16 @@ eraser.addEventListener('click', eraseColor);
 
 function eraseColor(){
   eraserOn = true;
+  colorFill = false;
   cells.forEach(function(cell){
     cell.addEventListener('click', function(){
-      this.style.backgroundColor = 'transparent';
+      if (eraserOn === false){
+        this.style.backgroundColor = color;
+      }else{
+        if (eraserOn === true){
+          this.style.backgroundColor = 'transparent';
+        }
+      }
     });
   });
 }
