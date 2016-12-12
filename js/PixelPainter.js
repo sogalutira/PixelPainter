@@ -89,18 +89,23 @@ setDefaultPalette();
 
 // Button for default color palette
 var defaultColors = document.createElement('button');
-defaultColors.className = 'default-colors';
+defaultColors.className = 'palette-buttons';
 defaultColors.innerHTML = 'Default';
-leftBar.appendChild(defaultColors);
 defaultColors.addEventListener('click', setDefaultPalette);
 
 
 // Functions and button for random colors
 var randomColors = document.createElement('button');
-randomColors.className = 'random-colors';
-randomColors.innerHTML = 'Random Colors';
-leftBar.appendChild(randomColors);
+randomColors.className = 'palette-buttons';
+randomColors.innerHTML = 'Random';
 randomColors.addEventListener('click', setRandomPalette);
+
+var paletteButtons = document.createElement('div');
+paletteButtons.className = 'palette-buttons-container';
+paletteButtons.innerHTML = 'Palette:';
+paletteButtons.appendChild(randomColors);
+paletteButtons.appendChild(defaultColors);
+leftBar.appendChild(paletteButtons);
 
 function randomColorPalette(){
   var rgbValues = '0123456789ABCDEF'.split('');
@@ -120,7 +125,9 @@ function setRandomPalette(){
 // Variables for event listeners
 var chosenColor = document.querySelectorAll('.colors');
 var cells = document.querySelectorAll('.columns');
-var color = '';
+var selectedPixelColor = document.getElementById('selected');
+selectedPixelColor.style.backgroundColor = 'black';
+var color = 'black';
 var eraserOn = false;
 var colorFill = false;
 
@@ -135,13 +142,11 @@ function getColor(){
 getColor();
 
 function getStyle(){
-  var selectedPixelColor = document.getElementById('selected');
   eraserOn = false;
   colorFill = true;
   color = this.style.backgroundColor;
   //show user selected color
   selectedPixelColor.style.backgroundColor = color;
-  console.log('selected', selectedPixelColor.style.backgroundColor);
   return color;
 }
 
@@ -194,10 +199,10 @@ function eraseColor(){
   colorFill = false;
   cells.forEach(function(cell){
     cell.addEventListener('click', function(){
-      if (eraserOn === false){
+      if (eraserOn === false && colorFill === true){
         this.style.backgroundColor = color;
       }else{
-        if (eraserOn === true){
+        if (eraserOn === true && colorFill === false){
           this.style.backgroundColor = 'transparent';
         }
       }
@@ -213,6 +218,17 @@ leftBar.appendChild(clearAll);
 clearAll.addEventListener('click', function(){
   cells.forEach(function(cell){
     cell.style.backgroundColor = 'transparent';
+  });
+});
+
+// Fill canvas
+var fillAll = document.createElement('button');
+fillAll.callName = 'fill-all';
+fillAll.innerHTML = 'Fill';
+leftBar.appendChild(fillAll);
+fillAll.addEventListener('click', function(){
+  cells.forEach(function(cell){
+    cell.style.backgroundColor = color;
   });
 });
 
