@@ -121,17 +121,20 @@ function setRandomPalette(){
 var chosenColor = document.querySelectorAll('.colors');
 var cells = document.querySelectorAll('.columns');
 var color = '';
+var eraserOn = false;
 
 // Event listener to get pixel color from color palette grid
 function getColor(){
   for (var i = 0; i < chosenColor.length; i++){
     chosenColor[i].addEventListener('click', getStyle);
+    eraserOn = false;
   }
 }
 getColor();
 
 function getStyle(){
   var selectedPixelColor = document.getElementById('selected');
+  eraserOn = false;
   color = this.style.backgroundColor;
   //show user selected color
   selectedPixelColor.style.backgroundColor = color;
@@ -141,7 +144,13 @@ function getStyle(){
 
 // Event listener to fill the canvas pixel with the selected color
 function fillColor(pixel){
-  this.style.backgroundColor = color;
+  if (eraserOn === true){
+    this.style.backgroundColor = 'transparent';
+  }else{
+    if (eraserOn === false){
+      this.style.backgroundColor = color;
+    }
+  }
   return this.style.backgroundColor;
 }
 
@@ -178,6 +187,7 @@ leftBar.appendChild(eraser);
 eraser.addEventListener('click', eraseColor);
 
 function eraseColor(){
+  eraserOn = true;
   cells.forEach(function(cell){
     cell.addEventListener('click', function(){
       this.style.backgroundColor = 'transparent';
