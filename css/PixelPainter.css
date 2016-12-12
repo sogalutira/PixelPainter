@@ -68,6 +68,7 @@ div.selected-description{
 div.left-bar{
   position: absolute;
   display: inline-block;
+  width: 12%;
 }
 
 div.eraser{

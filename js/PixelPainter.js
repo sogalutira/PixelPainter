@@ -80,11 +80,28 @@ var hexColors = [/* red */'#B20000', '#CC0000', '#E50000', '#FF0000', '#FF1919',
 
 // Fill color palette
 var indivColor = colorsGrid.querySelectorAll('.colors');
-indivColor.forEach(function(cell, index){
-  cell.style.backgroundColor = hexColors[index];
-});
+function setDefaultPalette(){
+  indivColor.forEach(function(cell, index){
+    cell.style.backgroundColor = hexColors[index];
+  });
+}
+setDefaultPalette();
 
-// Functions for random colors
+// Button for default color palette
+var defaultColors = document.createElement('button');
+defaultColors.className = 'default-colors';
+defaultColors.innerHTML = 'Default';
+leftBar.appendChild(defaultColors);
+defaultColors.addEventListener('click', setDefaultPalette);
+
+
+// Functions and button for random colors
+var randomColors = document.createElement('button');
+randomColors.className = 'random-colors';
+randomColors.innerHTML = 'Random Colors';
+leftBar.appendChild(randomColors);
+randomColors.addEventListener('click', setRandomPalette);
+
 function randomColorPalette(){
   var rgbValues = '0123456789ABCDEF'.split('');
   var color = '#';
