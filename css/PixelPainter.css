@@ -1,47 +1,77 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
+
+body{
+  font-family: 'Press Start 2P', cursive;
+}
+
+h1{
+  padding: 15px;
+}
+
+button{
+font-family: 'Press Start 2P', cursive;
+font-size: 5px;
+}
+
+
 #pixelPainter{
+  box-sizing: border-box;
   width: 100%;
   height: 100%;
 }
+
 div.columns {
   border-style: outset;
   border-width: 1px;
-  height: 20px;
-  width: 20px;
-  display: inline-block;
-
+  height: 10px;
+  width: 10px;
+  display: block;
 }
 
 div.rows {
   height: 20px;
-  width: 100%;
+  max-width: 100%;
   display: inline-block;
+}
 
+#canvases{
+  box-sizing: border-box;
 }
 
 #pp-colors{
-  display: inline-block;
-  width: 100%;
+  display: block;
+  width: 75px;
+}
+
+#pp-colors.grid{
+  width: 58px;
+  height: 103px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #BDBDBD;
+  box-sizing: border-box;
+  margin-left: 5px;
 }
 
 #pp-colors .rows {
   display: inline-block;
-  height: 10px;
-  width: 10px;
-  margin: 1px;
+  height: 8px;
+  width: 7.4px;
+  margin: 0.8px;
 }
 
 #pp-canvas.grid{
   display: inline-block;
-  width: 100%;
-  margin-left: 15%;
+  max-width: 100%;
+  margin-left: 85px;
 }
 
 div.colors {
   border-style: solid;
   border-width: thin;
   border-color: rgba(140, 139, 139, 0.06);
-  height: 10px;
-  width: 10px;
+  height: 7px;
+  width: 7px;
   display: inline-block;
 }
 
@@ -58,19 +88,21 @@ div.colors {
   display: block;
   width: 61.6px;
   text-align: center;
-  margin-top: 210%;
+  margin-top: 5%;
+  margin-left: 3px;
 }
 
 div.selected-description{
   display: block;
-  font-size: 8px;
+  font-size: 6px;
+  margin-top: 2px;
   margin-bottom: 15px;
 }
 
 div.left-bar{
   position: absolute;
   display: inline-block;
-  width: 12%;
+  width: 85px;
 }
 
 div.eraser{
@@ -84,5 +116,18 @@ div.eraser{
 
 #highlight{
   border-color: fuchsia;
-  border-width: 1px;
+  border-width: 1.5px;
+}
+
+.palette-buttons-container{
+  font-size: 7px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.palette-buttons{
+  width: 40px;
+  padding: 1px;
+  margin-top: 5px;
+  margin-right: 2px;
 }

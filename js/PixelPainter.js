@@ -70,7 +70,7 @@ selectedContainer.appendChild(gridDescrDiv);
 leftBar.appendChild(selectedContainer);
 
 //Create grid for canvas
-var canvasGrid = createGrid(15, 15);
+var canvasGrid = createGrid(30, 30);
 canvasGrid.id = "pp-canvas";
 canvasContainer.appendChild(canvasGrid);
 paintContainer.appendChild(canvasContainer);
@@ -229,7 +229,7 @@ clearAll.addEventListener('click', function(){
 
 // Fill canvas
 var fillAll = document.createElement('button');
-fillAll.callName = 'fill-all';
+fillAll.className = 'fill-all';
 fillAll.innerHTML = 'Fill';
 leftBar.appendChild(fillAll);
 fillAll.addEventListener('click', function(){
