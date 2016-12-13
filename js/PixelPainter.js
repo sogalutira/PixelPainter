@@ -76,6 +76,12 @@ canvasGrid.id = "pp-canvas";
 canvasContainer.appendChild(canvasGrid);
 paintContainer.appendChild(canvasContainer);
 
+// Container for canvas
+var bigContainer = document.createElement('div');
+bigContainer.className = 'big-container';
+bigContainer.appendChild(canvasGrid);
+canvasContainer.appendChild(bigContainer);
+
 // Colors for palette
 var hexColors = [/* red */'#B20000', '#CC0000', '#E50000', '#FF0000', '#FF1919', '#FF3333', '#FF4C4C', '#FF6666', '#FF7F7F', '#FF9999', '#FFB2B2', /* orange */'#662C00', '#7F3700', '#994200', '#B24D00', '#CC5800', '#E56300', '#FF6F00', '#FF6F00', '#FF7D19', '#FF8B33', '#FF9A4C', /* yellow */'#CCC100', '#E5D900', '#FFF200', '#FFF999', /* green */ '#D2FF7F', '#DBFF99', '#E4FFB2', '#A6FF00', '#95E500', '#84CC00', '#00991E', '#00B223', '#00CC28', '#00E52D', '#00FF33', '#00FF33', '#66FF84', '#B2FFC1', /* blue */'#B2F6FF', '#99F3FF', '#7FF0FF', '#66EDFF', '#008799','#009DB2', '#00B4CC', '#00CAE5', '#00E1FF', '#4CEAFF', /* violet */'#D3B2FF', '#C599FF', '#A866FF', '#8B33FF', '#5800CC', /* grayscale */ '#000000', '#191919', '#333333', '#4C4C4C', '#666666', '#7F7F7F', '#999999', '#B2B2B2', '#CCCCCC', '#E5E5E5', '#FFFFFF'];
 
@@ -203,7 +209,7 @@ function stopFill(){
 
 // Fill canvas
 var fillAll = document.createElement('button');
-fillAll.className = 'buttons';
+fillAll.className = 'edit-buttons';
 fillAll.id = 'fill-all';
 fillAll.innerHTML = 'Fill';
 leftBar.appendChild(fillAll);
@@ -215,9 +221,9 @@ fillAll.addEventListener('click', function(){
 
 // Eraser to delete color
 var eraser = document.createElement('button');
-eraser.className = 'buttons';
+eraser.className = 'edit-buttons';
 eraser.id = 'eraser';
-eraser.innerHTML = 'Erase';
+eraser.innerHTML = 'Eraser';
 leftBar.appendChild(eraser);
 eraser.addEventListener('click', eraseColor);
 
@@ -239,7 +245,7 @@ function eraseColor(){
 
 // Clear canvas
 var clearAll = document.createElement('button');
-clearAll.className = 'buttons';
+clearAll.className = 'edit-buttons';
 clearAll.id = 'clear-all';
 clearAll.innerHTML = 'Clear';
 leftBar.appendChild(clearAll);
