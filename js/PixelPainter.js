@@ -131,6 +131,7 @@ function randomColorPalette(){
 function setRandomPalette(){
   for (var j = 0; j < indivColor.length; j++){
     indivColor[j].style.backgroundColor = randomColorPalette();
+    selectedPixelColor.style.backgroundColor = randomColorPalette();
   }
 }
 
