@@ -2,7 +2,7 @@ function createGrid(rows, columns, attributes) {
   var gridElement = document.createElement('div');
   gridElement.className = "grid";
 
-  // validations
+  // Validations
   if (typeof rows !== 'number' || rows < 0){
     throw new Error("Non-negative values only.");
   }
@@ -13,7 +13,7 @@ function createGrid(rows, columns, attributes) {
     columns = rows;
   }
 
-  // loops to create rows and columns
+  // Loops to create rows and columns
   for (var i = 0; i < rows; i++){
     var rowElement = document.createElement('div');
     rowElement.className = "rows";
@@ -33,7 +33,7 @@ function createGrid(rows, columns, attributes) {
   return gridElement;
 }
 
-// function to add attributes to the grid
+// Function to add attributes to the grid
 function setAttr(element, attrObj){
   if (typeof attrObj === 'object'){
     keys = Object.keys(attrObj);
@@ -43,7 +43,7 @@ function setAttr(element, attrObj){
   }
 }
 
-// creating a pixel painter with color palette and grid using createGrid function
+// Creating a pixel painter with color palette and grid using createGrid function
 var paintContainer = document.getElementById('pixelPainter');
 var canvasContainer = document.createElement('div');
 canvasContainer.id = 'canvases';
@@ -70,7 +70,7 @@ selectedContainer.appendChild(selectedColor);
 selectedContainer.appendChild(gridDescrDiv);
 leftBar.appendChild(selectedContainer);
 
-//Create grid for canvas
+// Create grid for canvas
 var canvasGrid = createGrid(30, 30);
 canvasGrid.id = "pp-canvas";
 canvasContainer.appendChild(canvasGrid);
