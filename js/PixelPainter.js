@@ -61,10 +61,11 @@ canvasContainer.appendChild(leftBar);
 var selectedContainer = document.createElement('div');
 selectedContainer.className = 'selected-container';
 var selectedColor = document.createElement('div');
+// selectedColor.setAttribute('type', 'color');
 selectedColor.id = 'selected';
 var gridDescrDiv = document.createElement('div');
 gridDescrDiv.className = 'selected-description';
-gridDescrDiv.innerHTML = 'color';
+gridDescrDiv.innerHTML = 'rgb(0, 0, 0)';
 selectedContainer.appendChild(selectedColor);
 selectedContainer.appendChild(gridDescrDiv);
 leftBar.appendChild(selectedContainer);
@@ -89,20 +90,25 @@ setDefaultPalette();
 
 // Button for default color palette
 var defaultColors = document.createElement('button');
-defaultColors.className = 'palette-buttons';
+defaultColors.className = 'buttons';
+defaultColors.id = 'default-colors';
 defaultColors.innerHTML = 'Default';
 defaultColors.addEventListener('click', setDefaultPalette);
 
 
 // Functions and button for random colors
 var randomColors = document.createElement('button');
-randomColors.className = 'palette-buttons';
+randomColors.className = 'buttons';
+randomColors.id = 'random-colors';
 randomColors.innerHTML = 'Random';
 randomColors.addEventListener('click', setRandomPalette);
 
 var paletteButtons = document.createElement('div');
 paletteButtons.className = 'palette-buttons-container';
-paletteButtons.innerHTML = 'Palette:';
+paletteButtons.innerHTML = 'Palette: ';
+var lineBreak = document.createElement('br');
+lineBreak.className = 'br';
+paletteButtons.appendChild(lineBreak);
 paletteButtons.appendChild(randomColors);
 paletteButtons.appendChild(defaultColors);
 leftBar.appendChild(paletteButtons);
@@ -152,6 +158,8 @@ function getStyle(){
   this.id = 'highlight';
   //show user selected color
   selectedPixelColor.style.backgroundColor = color;
+  gridDescrDiv.innerHTML = selectedPixelColor.style.backgroundColor;
+
   return color;
 }
 
@@ -193,9 +201,22 @@ function stopFill(){
   });
 }
 
+// Fill canvas
+var fillAll = document.createElement('button');
+fillAll.className = 'buttons';
+fillAll.id = 'fill-all';
+fillAll.innerHTML = 'Fill';
+leftBar.appendChild(fillAll);
+fillAll.addEventListener('click', function(){
+  cells.forEach(function(cell){
+    cell.style.backgroundColor = color;
+  });
+});
+
 // Eraser to delete color
 var eraser = document.createElement('button');
-eraser.className = 'eraser';
+eraser.className = 'buttons';
+eraser.id = 'eraser';
 eraser.innerHTML = 'Erase';
 leftBar.appendChild(eraser);
 eraser.addEventListener('click', eraseColor);
@@ -218,23 +239,13 @@ function eraseColor(){
 
 // Clear canvas
 var clearAll = document.createElement('button');
-clearAll.className = 'clear-all';
+clearAll.className = 'buttons';
+clearAll.id = 'clear-all';
 clearAll.innerHTML = 'Clear';
 leftBar.appendChild(clearAll);
 clearAll.addEventListener('click', function(){
   cells.forEach(function(cell){
     cell.style.backgroundColor = 'transparent';
-  });
-});
-
-// Fill canvas
-var fillAll = document.createElement('button');
-fillAll.className = 'fill-all';
-fillAll.innerHTML = 'Fill';
-leftBar.appendChild(fillAll);
-fillAll.addEventListener('click', function(){
-  cells.forEach(function(cell){
-    cell.style.backgroundColor = color;
   });
 });
 
