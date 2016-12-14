@@ -60,9 +60,13 @@ canvasContainer.appendChild(leftBar);
 // Grid to show user selected color
 var selectedContainer = document.createElement('div');
 selectedContainer.className = 'selected-container';
-var selectedColor = document.createElement('div');
-// selectedColor.setAttribute('type', 'color');
+var selectedColor = document.createElement('input');
+selectedColor.setAttribute('type', 'color');
 selectedColor.id = 'selected';
+selectedColor.addEventListener('input', function() {
+  selectedColor.innerHTML = " ";
+  gridDescrDiv.innerHTML = 'hex ' + selectedColor.value;
+});
 var gridDescrDiv = document.createElement('div');
 gridDescrDiv.className = 'selected-description';
 gridDescrDiv.innerHTML = 'rgb(0, 0, 0)';
@@ -138,7 +142,7 @@ function setRandomPalette(){
 var chosenColor = document.querySelectorAll('.colors');
 var cells = document.querySelectorAll('.columns');
 var selectedPixelColor = document.getElementById('selected');
-selectedPixelColor.style.backgroundColor = 'black';
+selectedPixelColor.style.backgroundColor = 'transparent';
 var color = 'black';
 var eraserOn = false;
 var colorFill = false;
@@ -163,9 +167,19 @@ function getStyle(){
   }
   this.id = 'highlight';
   //show user selected color
-  selectedPixelColor.style.backgroundColor = color;
-  gridDescrDiv.innerHTML = selectedPixelColor.style.backgroundColor;
+  // selectedPixelColor.style.backgroundColor = color;
+  var selectedHex = rgb2hex(color);
+  selectedColor.value = selectedHex;
+  gridDescrDiv.innerHTML = color;
   return color;
+}
+
+function rgb2hex(rgb) {
+ rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+ function hex(x) {
+  return ("0" + parseInt(x).toString(16)).slice(-2);
+ }
+ return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
 }
 
 
