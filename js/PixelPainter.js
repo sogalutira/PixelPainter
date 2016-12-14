@@ -64,7 +64,7 @@ var selectedColor = document.createElement('input');
 selectedColor.setAttribute('type', 'color');
 selectedColor.id = 'selected';
 selectedColor.addEventListener('input', function() {
-  selectedColor.innerHTML = " ";
+  color = selectedColor.value;
   gridDescrDiv.innerHTML = 'hex ' + selectedColor.value;
 });
 var gridDescrDiv = document.createElement('div');
@@ -168,8 +168,9 @@ function getStyle(){
   this.id = 'highlight';
   //show user selected color
   // selectedPixelColor.style.backgroundColor = color;
-  var selectedHex = rgb2hex(color);
-  selectedColor.value = selectedHex;
+  // var selectedHex = rgb2hex(color);
+  // selectedColor.value = selectedHex;
+  // color = selectedColor.value;
   gridDescrDiv.innerHTML = color;
   return color;
 }
