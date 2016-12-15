@@ -95,6 +95,9 @@ function setDefaultPalette(){
   indivColor.forEach(function(cell, index){
     cell.style.backgroundColor = hexColors[index];
   });
+  selectedColor.value = '#000000';
+  color = selectedColor.value;
+  gridDescrDiv.innerHTML = 'hex ' + color;
 }
 setDefaultPalette();
 
@@ -136,6 +139,9 @@ function setRandomPalette(){
   for (var j = 0; j < indivColor.length; j++){
     indivColor[j].style.backgroundColor = randomColorPalette();
   }
+  selectedColor.value = randomColorPalette();
+  color = selectedColor.value;
+  gridDescrDiv.innerHTML = 'hex ' + color;
 }
 
 // Variables for event listeners
