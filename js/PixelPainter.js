@@ -167,10 +167,8 @@ function getStyle(){
   }
   this.id = 'highlight';
   //show user selected color
-  // selectedPixelColor.style.backgroundColor = color;
-  // var selectedHex = rgb2hex(color);
-  // selectedColor.value = selectedHex;
-  // color = selectedColor.value;
+  var selectedHex = rgb2hex(color);
+  selectedColor.value = selectedHex;
   gridDescrDiv.innerHTML = color;
   return color;
 }
