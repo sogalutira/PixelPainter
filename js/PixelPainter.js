@@ -127,10 +127,10 @@ paletteButtons.appendChild(defaultColors);
 leftBar.appendChild(paletteButtons);
 
 function randomColorPalette(){
-  var rgbValues = '0123456789ABCDEF'.split('');
+  var hexValues = '0123456789ABCDEF'.split('');
   var color = '#';
   for (var i = 0; i < 6; i++){
-    color += rgbValues[Math.floor(Math.random() * 16)].toString(16);
+    color += hexValues[Math.floor(Math.random() * 16)].toString(16);
   }
   return color;
 }
@@ -173,20 +173,36 @@ function getStyle(){
   }
   this.id = 'highlight';
   //show user selected color
-  var selectedHex = rgb2hex(color);
+  var selectedHex = rgbToHex(color);
   selectedColor.value = selectedHex;
   gridDescrDiv.innerHTML = color;
   return color;
 }
 
-function rgb2hex(rgb) {
- rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
- function hex(x) {
-  return ("0" + parseInt(x).toString(16)).slice(-2);
- }
- return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+function rgbToHex(rgb){
+  toArr = rgb.substring(4, rgb.length-1)
+          .replace(/ /g, '')
+          .split(',');
+  if (toArr[0].length === 1){
+    toArr[0] = '0' + toArr[0];
+  }
+  if (toArr[0].length > 2){
+    toArr[0] = (parseInt(toArr[0]).toString(16)).slice(-2);
+  }
+  if (toArr[1].length === 1){
+    toArr[1] = '0' + toArr[2];
+  }
+  if (toArr[1].length > 2){
+    toArr[1] = (parseInt(toArr[1]).toString(16)).slice(-2);
+  }
+  if (toArr[2].length === 1){
+    toArr[2] = '0' + toArr[2];
+  }
+  if (toArr[2].length > 2){
+    toArr[2] = (parseInt(toArr[2]).toString(16)).slice(-2);
+  }
+  return '#' + toArr.toString(16).replace(/,/g, '');
 }
-
 
 // Event listener to fill the canvas pixel with the selected color
 function fillColor(pixel){
@@ -272,5 +288,3 @@ clearAll.addEventListener('click', function(){
     cell.style.backgroundColor = 'transparent';
   });
 });
-
-

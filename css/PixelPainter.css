@@ -21,6 +21,10 @@ font-family: 'Press Start 2P', cursive;
 font-size: 5px;
 }
 
+button:focus{
+  outline: 0;
+}
+
 input#selected{
   padding: 0px;
   border: none;
