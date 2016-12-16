@@ -103,11 +103,15 @@ var hexColors = [/* red */'#B20000', '#CC0000', '#E50000', '#FF0000', '#FF1919',
 // Fill color palette
 var indivColor = colorsGrid.querySelectorAll('.colors');
 function setDefaultPalette(){
+  // var chosenColor = document.querySelectorAll('.colors');
   indivColor.forEach(function(cell, index){
     cell.style.backgroundColor = hexColors[index];
   });
   selectedColor.value = '#000000';
   color = selectedColor.value;
+  for (var i = 0; i < indivColor.length; i++){
+    indivColor[i].id = '';
+  }
   gridDescrDiv.innerHTML = 'hex ' + color;
 }
 setDefaultPalette();
@@ -149,6 +153,7 @@ function randomColorPalette(){
 function setRandomPalette(){
   for (var j = 0; j < indivColor.length; j++){
     indivColor[j].style.backgroundColor = randomColorPalette();
+    indivColor[j].id = '';
   }
   selectedColor.value = randomColorPalette();
   color = selectedColor.value;
