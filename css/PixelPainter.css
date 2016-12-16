@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
+@import url('https://fonts.googleapis.com/css?family=Arbutus');
 
 body{
   font-family: 'Press Start 2P', cursive;
@@ -138,6 +139,14 @@ div.left-bar{
   display: inline-block;
   width: 120px;
   margin-left: 25px;
+}
+
+div.right-bar{
+  margin-top: 50px;
+  margin-left: 60px;
+  width: 600px;
+  font-size: 12px;
+  font-family: 'Arbutus', cursive;
 }
 
 div.eraser{
